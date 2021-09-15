@@ -4,15 +4,17 @@ LowerCase=""
 UpperCase=""
 Special=""
 Numbers=""
+allfunc=""
+ready=""
+password1=""
 var generateBtn = document.querySelector("#generate");
 
-
 // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+function writePassword() {
+  // var password = generatePassword();
+var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
+passwordText.value = password1;}
 
 // }
 
@@ -26,92 +28,106 @@ var generateBtn = document.querySelector("#generate");
 
 //   }
 
-
-all=[]
-allfunc=""
 function passwordcriteria(){
-  password=""
+  allfunc=""
   if(UpperCase===true){
-    all.push('Lower')
+    allfunc+="U"
     }
   if(LowerCase===true){
-    all.push('Upper')
-  }
-  if(Numbers===true){
-    all.push('Numbers')
-  }
-  if(Special===true){
-    all.push('Special')
-  }
-  if (all.includes('Lower')==true){
     allfunc+="L"
   }
-  if (all.includes('Upper')==true){
-      allfunc+="U"
-  }
-  if (all.includes('Special')==true){
-    allfunc+="S"
-  }
-  if (all.includes('Numbers')==true){
+  if(Numbers===true){
     allfunc+="N"
   }
+  if(Special===true){
+    allfunc+="S"
+  }
+  
+}
+function times(){
+  password1=""
+   for (var i = 0; i < lengthof; i++){
+     password()
+   }
+
 }
 
+
 function password(){
-  if(allfunc.length=0){
-    break}
-  for(i in length){
-      allfunc.charAt(Math.random()*length)}}
+  ready=""
+  criteria=allfunc.length
+  if(criteria==0){
+    return "None"
+  }
+    ready=allfunc.charAt(Math.random()*criteria)
+    if (ready=="S"){
+      password1+=randomspecial()
+    }
+    if (ready=="U"){
+      password1+=randomupper()
+    }
+    if (ready=="N"){
+      password1+=randomnumber()
+    }
+    if (ready=="L"){
+      password1+=randomlower()
+    }
+    return password1
+  }
 
 
 
 // Add event listener to generate button
 // generateBtn.addEventListener("click", writePassword);
-length=generateBtn.addEventListener("click",function(){
+lengthof=generateBtn.addEventListener("click",function(){
   answer=prompt("What would you like the length of the password to be?(Must be between 8-128 characters) " , "8-128")
   if (answer>=8 && answer<=128){
-      length=answer
+      lengthof=answer
       go4()
       go3()
       go2()
-      go1()}
+      go1()
+      passwordcriteria()
+      password()
+      if (password()=="None"){
+        return alert("Please respond 'yes' to at least one criteria for your password.")}
+      else{
+        times()
+        writePassword()
+      }}
+
   else
     alert("Please input a number between 8-128")
       
 });
 
-function go4 () {
-  true4=prompt("Would you like to add numbers?")
-  got4=true4.toUpperCase()
-  Numbers=(got4==="YES")
-};
-
-function go3 (){
-  true3=prompt("Would you like to add special characters?")
-  got3=true3.toUpperCase()
-  Special=(got3==="YES")
-};
-
-function go2(){
-  true2=prompt("Would you like to add uppercase letters?")
-  got2=true2.toUpperCase()
-  UpperCase=(got2==="YES")
-};
-
+//
 function go1(){
-  true1=prompt("Would you like to add lowercase letters?")
+  true1=prompt("Would you like to add lowercase letters?(Yes or No)")
   got1=true1.toUpperCase()
   LowerCase=(got1==="YES")
 };
 
+function go2(){
+  true2=prompt("Would you like to add uppercase letters? (Yes or No) ")
+  got2=true2.toUpperCase()
+  UpperCase=(got2==="YES")
+};
 
-Password={
-  lower: randomlower(),
-  upper:randomupper(),
-  number:randomnumber(),
-  character:randomspecial()
+function go3 (){
+  true3=prompt("Would you like to add special characters?(Yes or No)")
+  got3=true3.toUpperCase()
+  Special=(got3==="YES")
+};
 
-}
+function go4 () {
+  true4=prompt("Would you like to add numbers? (Yes or No)")
+  got4=true4.toUpperCase()
+  Numbers=(got4==="YES")
+};
+
+
+
 //generating lower case words
 function randomlower() {
   lowercase = "abcdefghijklmnopqrstuvwxyz",
@@ -120,6 +136,8 @@ function randomlower() {
     val+= lowercase.charAt(Math.random()*n)
   return val;
 }
+
+
 
 //generating upper case words
 function randomupper() {
