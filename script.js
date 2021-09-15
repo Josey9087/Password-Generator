@@ -1,63 +1,111 @@
 // Assignment Code
+
+LowerCase=""
+UpperCase=""
+Special=""
+Numbers=""
 var generateBtn = document.querySelector("#generate");
 
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+//   passwordText.value = password;
 
+// }
+
+
+// function generatePassword(){
+//   // for (var i=0, n=all.length; i<n; ++i){
+//     for(i in all){
+//       console.log(`${i}: ${all[i]}`)
+//       all=all.filter(value =>  true)
+//     }
+
+//   }
+
+
+all=[]
+allfunc=""
+function passwordcriteria(){
+  password=""
+  if(UpperCase===true){
+    all.push('Lower')
+    }
+  if(LowerCase===true){
+    all.push('Upper')
+  }
+  if(Numbers===true){
+    all.push('Numbers')
+  }
+  if(Special===true){
+    all.push('Special')
+  }
+  if (all.includes('Lower')==true){
+    allfunc+="L"
+  }
+  if (all.includes('Upper')==true){
+      allfunc+="U"
+  }
+  if (all.includes('Special')==true){
+    allfunc+="S"
+  }
+  if (all.includes('Numbers')==true){
+    allfunc+="N"
+  }
 }
+
+function password(){
+  if(allfunc.length=0){
+    break}
+  for(i in length){
+      allfunc.charAt(Math.random()*length)}}
+
 
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// generateBtn.addEventListener("click", writePassword);
 length=generateBtn.addEventListener("click",function(){
   answer=prompt("What would you like the length of the password to be?(Must be between 8-128 characters) " , "8-128")
-  if (answer>=8 && answer<=128)
+  if (answer>=8 && answer<=128){
       length=answer
+      go4()
+      go3()
+      go2()
+      go1()}
   else
     alert("Please input a number between 8-128")
       
 });
 
-go4=generateBtn.addEventListener("click",function(){
+function go4 () {
   true4=prompt("Would you like to add numbers?")
-  go4=true4.toUpperCase()
-  Truish.push(go4)
-});
+  got4=true4.toUpperCase()
+  Numbers=(got4==="YES")
+};
 
-go3=generateBtn.addEventListener("click",function(){
+function go3 (){
   true3=prompt("Would you like to add special characters?")
-  go3=true3.toUpperCase()
-  Truish.push(go3)
-});
+  got3=true3.toUpperCase()
+  Special=(got3==="YES")
+};
 
-go2=generateBtn.addEventListener("click",function(){
+function go2(){
   true2=prompt("Would you like to add uppercase letters?")
-  go2=true2.toUpperCase()
-  Truish.push(go2)
-});
+  got2=true2.toUpperCase()
+  UpperCase=(got2==="YES")
+};
 
-go1=generateBtn.addEventListener("click",function(){
+function go1(){
   true1=prompt("Would you like to add lowercase letters?")
-  go1=true1.toUpperCase()
-  Truish.push(go1)}
-);
-
-Truish=[]
-function list(){
-  for (var i=0, n=Truish.length; i<n; ++i)
-  {
-    right=Truish[i]==="YES"
-    console.log(right)
-  }
-}
+  got1=true1.toUpperCase()
+  LowerCase=(got1==="YES")
+};
 
 
- Password={
+Password={
   lower: randomlower(),
   upper:randomupper(),
   number:randomnumber(),
@@ -67,31 +115,31 @@ function list(){
 //generating lower case words
 function randomlower() {
   lowercase = "abcdefghijklmnopqrstuvwxyz",
-  pass = "";
+  val = "";
   n=lowercase.length;
-    pass+= lowercase.charAt(Math.random()*n)
-  return pass;
+    val+= lowercase.charAt(Math.random()*n)
+  return val;
 }
 
 //generating upper case words
 function randomupper() {
   uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  pass = "";
+  val = "";
   n=uppercase.length; 
-    pass+= uppercase.charAt(Math.random()*n)
+    val+= uppercase.charAt(Math.random()*n)
   
-  return pass;
+  return val;
   }
 
 
 //generating special characters
 function randomspecial() {
     special= "!”#$%&’()*+,-./:;<=>?@[]\^_`{|}~"
-    pass= "";
+    val= "";
   n=special.length; 
-  pass+= special.charAt(Math.random()*n)
+  val+= special.charAt(Math.random()*n)
   
-  return pass;
+  return val;
   }
 
 
@@ -101,18 +149,8 @@ function randomspecial() {
 //generating numeric characters
 function randomnumber() {
     numbers = "0123456789",
-    num = "";
-    for (var i=0, n=numbers.length; i<length; ++i) {
-    num+= numbers.charAt(Math.random()*n)
-  }
-  return pass;
+    val = "";
+    n=numbers.length;
+    val+= numbers.charAt(Math.random()*n)
+  return val;
 }
-
-
-
-
-randomlower()
-
-
-
-
