@@ -8,6 +8,9 @@ Numbers=""
 allfunc=""
 ready=""
 password1=""
+lengthof=""
+
+//This var is selecting the element which has the generate id. This is the button being displayed.
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input.
@@ -19,28 +22,21 @@ passwordText.value = password1;}
 
 
 
-
-
-
 // Add event listener to generate button.
-// This event listener decides the length of the password generated as well as sets off a chain of functions
-// depending on whether of not if statments have been met. 
-// It prompts the user to input a length. If the length of the input is between 8 and 128 then it calls the 
-// other functions needed to generate the password.
-// If the length is not between these numbers then the function stops and alerts the user as to the criteria.
-// go1, go2, go3, and go4 all give a true or false value to variables based on the user input of the prompts they displayed.
-// If the output of the password is "None" then it will alert the user that one of the criteria must be used.
-// If the output of the password function is anything other than "None" then it will generate a password.
-// After generating the password the writePassword function is called in order to display the password in the box on screen. 
-lengthof=generateBtn.addEventListener("click",function(){
+// this is an event listener for when the 'generate.Btn' variable is clicked, when clicked it will start a function 
+//It prompts the user to input a length. If the length of the input is between 8 and 128 then it continues.
+// If the length is not between these numbers then the function stops and alerts the user as to the criteria of the length.
+// It calls go1 function.
+// If the output of the password function is "None" then it will alert the user that one of the criteria must be used.
+// If the output of the password function is anything other than "None" then it will continue.
+// It calls the times function.
+// After the times function generates the password the writePassword function is called in order to display the password in the box on screen. 
+
+generateBtn.addEventListener("click",function(){
   answer=prompt("What would you like the length of the password to be?(Must be between 8-128 characters) " , "8-128")
   if (answer>=8 && answer<=128){
     lengthof=answer
     go1()
-    go2()
-    go3()
-    go4()
-    passwordcriteria()
     if (password()=="None"){
       return alert("Please respond 'yes' to at least one criteria for your password.")}
       else{
@@ -52,44 +48,33 @@ lengthof=generateBtn.addEventListener("click",function(){
       alert("Please input a number between 8-128")
       
 });
- 
-    
 
-//Functions that push true or false based on prompt input to values used to decide criteria.
     
-// The four functions below named 'go1, go2, go3, and go4' prompt the user to decide what criteria they would like in their password.
-// All the functions uppercase the input so that if the user captializes letters or not it still has the same effect. 
-// It compares the answer to the value "YES" the output is a boolean. it then adds that boolean to corresponding global variables.
+// The function below resets the 'allfunc' variable since it gets added to and not completly reset anywhere else.
+// The function prompts the user to decide what criteria they would like in their password.
+// The function uppercases the input so that if the user captializes letters or not it still has the same effect. 
+// It compares the answer to the value "YES", the output is a boolean. It then adds that boolean to corresponding global variables.
+// It then goes through those global variables and if they are equal to true then they add a letter corresponding with each type of character
+// into a variable called the allfunc.
+
 function go1(){
+  allfunc=""
   true1=prompt("Would you like to add lowercase letters?(Yes or No)")
   got1=true1.toUpperCase()
   LowerCase=(got1==="YES")
-};
-    
-function go2(){
+
   true2=prompt("Would you like to add uppercase letters? (Yes or No) ")
   got2=true2.toUpperCase()
   UpperCase=(got2==="YES")
-};
     
-function go3 (){
   true3=prompt("Would you like to add special characters?(Yes or No)")
   got3=true3.toUpperCase()
   Special=(got3==="YES")
-};
     
-function go4 () {
   true4=prompt("Would you like to add numbers? (Yes or No)")
   got4=true4.toUpperCase()
   Numbers=(got4==="YES")
-};
 
-// The function below named 'passwordcriteria' is used to decide which of the four character types avalible will be included in the password
-// generated. If the global variable corresponding to each prompt holds the value true then a single character is added into a global
-// variable.
-
-function passwordcriteria(){
-  allfunc=""
   if(UpperCase===true){
     allfunc+="U"
   }
@@ -102,9 +87,12 @@ function passwordcriteria(){
   if(Special===true){
     allfunc+="S"
   }
-}
+};
+
 
 // The below function named 'password' generates a single letter of the password each time it is called.
+// It resets the 'ready' varaible each time it is called.
+// It makes the variable criteria and sets it to the length of the allfunc.
 // If the criteria length is 0 then the function returns "None". If it doesnt equal 0 then it randomizes
 // the type of character that's gonna be used based on what characters exist in the variable 'allfunc' these characters were decided by which
 // types of characters the user wanted when prompted. Once it lands on a specific character it calls the function that gets a random character
@@ -135,8 +123,8 @@ function password(){
 
 // The function bellow named 'times' decides the amount of times to call the 'password' function in order to add characters
 // into the 'password1'. It does this by calling the function as many times as it takes for 0 to get to the 'length' value by
-// intervals of 1 and stops when it reachs that value. The function resets the value of 'password1' before begining ensuring that it
-// is blank before truly generating the new password based on the length the user wanted.
+// intervals of 1 and stops when it reachs that value. 
+//The function resets the value of 'password1' before begining ensuring that it is blank before truly generating the new password based on the length the user wanted.
 function times(){
   password1=""
   for (var i = 0; i < lengthof; i++){
@@ -145,8 +133,9 @@ function times(){
 }
     
     
-// The function below randomly picks a lowercase letter by randomly generating a number from 1-length of the character possible
-// it then grabs the character that exists in this number and returns that character when the function is called.
+// The function below generates a variable that contains a string of all the possible lowercase characters,
+// it then randomly picks a lowercase letter by randomly generating a number from 1-length of the character possible
+// it then grabs the character that exists in this spot and returns that character when the function is called.
 function randomlower() {
   lowercase = "abcdefghijklmnopqrstuvwxyz",
   val = "";
@@ -157,8 +146,9 @@ function randomlower() {
 
 
 
-// The function below randomly picks an uppercase letter by randomly generating a number from 1-length of the character possible
-// it then grabs the character that exists in this number and returns that character when the function is called.
+// The function below generates a variable that contains a string of all the possible uppercase characters,
+// it then randomly picks an uppercase letter by randomly generating a number from 1-length of the character possible
+// it then grabs the character that exists in this spot and returns that character when the function is called.
 function randomupper() {
   uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   val = "";
@@ -168,10 +158,11 @@ function randomupper() {
   }
 
 
-// The function below randomly picks a special character by randomly generating a number from 1-length of the character possible
-// it then grabs the character that exists in this number and returns that character when the function is called.
+// The function below generates a variable that contains a string of all the possible special characters,
+// it then randomly picks a special character by randomly generating a number from 1-length of the character possible
+// it then grabs the character that exists in this spot and returns that character when the function is called.
 function randomspecial() {
-  special= "!”#$%&’()*+,-./:;<=>?@ []\^_`{|}~"
+  special= "!”#$%&’()*+,-./:;<=>?@[]\^_`{|}~"
   val= "";
   l=special.length; 
   val+= special.charAt(Math.random()*l)
@@ -179,8 +170,9 @@ function randomspecial() {
   }
 
 
-// The function below randomly picks a number by randomly generating a number from 1-length of the character possible
-// it then grabs the character that exists in this number and returns that character when the function is called.
+// The function below generates a variable that contains a string of all the possible single digit numbers
+// it then randomly picks a number by randomly generating a number from 1-length of the character possible
+// it then grabs the character that exists in this spot and returns that character when the function is called.
 function randomnumber() {
   numbers = "0123456789",
   val = "";
