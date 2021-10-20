@@ -4,6 +4,9 @@ Website: Password Generator
 
 This is a Password Genrator project for the University of Denver Coding Bootcamp. I was given all of the starter code for the HTML and CSS document. The only code I wrote was the Javascript.
 
+The page runs using Javascript, HTML and CSS.
+
+The page generates a random password based on the criteria that the user wants in the password.
 
 My assignment was as follows:
 
@@ -30,7 +33,7 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 
-
+This is a link to the deployed page: https://josey9087.github.io/PasswordGenerator/
 
 Explainations for the code are commented in the code. Only the Javascript code is commented as it was the only one I wrote.
 
